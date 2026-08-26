@@ -43,6 +43,7 @@
     position:sticky;
     top:0;
     height:100vh;
+    max-height:100vh;
     overflow:hidden;
   }
   .sidebar-header{
@@ -95,6 +96,7 @@
     padding:8px;
     overflow-y:auto;
     flex:1;
+    min-height:0;
   }
   .nav-list li{margin:2px 0;}
   .nav-link{
@@ -469,14 +471,14 @@
       <input type="text" id="sheetSearch" placeholder="Buscar...">
     </div>
     <ul class="nav-list" id="navList">
-      <li class="nav-group" data-group-name="iphone fundas iphone 16 fundas iphone 17 iphone 16 &amp; 16 plus iphone 17 &amp; air iphone 17 demo iphone 17 pro &amp; 17 pro max iphone 17e"><div class="nav-group-header" data-nav-toggle="navgroup-iphone"><span class="nav-group-chevron">▶</span><span class="nav-group-title">iPhone</span><span class="nav-count">7</span></div><ul class="nav-subgroup" id="navgroup-iphone">
-<li><a href="#fundas-iphone-16-11" class="nav-link" data-target="fundas-iphone-16-11" data-name="fundas iphone 16"><span class="nav-label">Fundas iPhone 16</span><span class="nav-count">58</span></a></li>
-<li><a href="#fundas-iphone-17-9" class="nav-link" data-target="fundas-iphone-17-9" data-name="fundas iphone 17"><span class="nav-label">Fundas iPhone 17</span><span class="nav-count">91</span></a></li>
-<li><a href="#iphone-16-16-plus-10" class="nav-link" data-target="iphone-16-16-plus-10" data-name="iphone 16 &amp; 16 plus"><span class="nav-label">iPhone 16 &amp; 16 Plus</span><span class="nav-count">21</span></a></li>
-<li><a href="#iphone-17-air-7" class="nav-link" data-target="iphone-17-air-7" data-name="iphone 17 &amp; air"><span class="nav-label">iPhone 17 &amp; Air</span><span class="nav-count">28</span></a></li>
-<li><a href="#iphone-17-demo-24" class="nav-link" data-target="iphone-17-demo-24" data-name="iphone 17 demo"><span class="nav-label">iPhone 17 DEMO</span><span class="nav-count">15</span></a></li>
+      <li class="nav-group" data-group-name="iphone iphone 17 pro &amp; 17 pro max iphone 17 &amp; air iphone 17e iphone 16 &amp; 16 plus fundas iphone 17 fundas iphone 16 iphone 17 demo"><div class="nav-group-header" data-nav-toggle="navgroup-iphone"><span class="nav-group-chevron">▶</span><span class="nav-group-title">iPhone</span><span class="nav-count">7</span></div><ul class="nav-subgroup" id="navgroup-iphone">
 <li><a href="#iphone-17-pro-17-pro-max-6" class="nav-link" data-target="iphone-17-pro-17-pro-max-6" data-name="iphone 17 pro &amp; 17 pro max"><span class="nav-label">iPhone 17 Pro &amp; 17 Pro Max</span><span class="nav-count">26</span></a></li>
+<li><a href="#iphone-17-air-7" class="nav-link" data-target="iphone-17-air-7" data-name="iphone 17 &amp; air"><span class="nav-label">iPhone 17 &amp; Air</span><span class="nav-count">28</span></a></li>
 <li><a href="#iphone-17e-8" class="nav-link" data-target="iphone-17e-8" data-name="iphone 17e"><span class="nav-label">iPhone 17e</span><span class="nav-count">11</span></a></li>
+<li><a href="#iphone-16-16-plus-10" class="nav-link" data-target="iphone-16-16-plus-10" data-name="iphone 16 &amp; 16 plus"><span class="nav-label">iPhone 16 &amp; 16 Plus</span><span class="nav-count">21</span></a></li>
+<li><a href="#fundas-iphone-17-9" class="nav-link" data-target="fundas-iphone-17-9" data-name="fundas iphone 17"><span class="nav-label">Fundas iPhone 17</span><span class="nav-count">91</span></a></li>
+<li><a href="#fundas-iphone-16-11" class="nav-link" data-target="fundas-iphone-16-11" data-name="fundas iphone 16"><span class="nav-label">Fundas iPhone 16</span><span class="nav-count">58</span></a></li>
+<li><a href="#iphone-17-demo-24" class="nav-link" data-target="iphone-17-demo-24" data-name="iphone 17 demo"><span class="nav-label">iPhone 17 DEMO</span><span class="nav-count">15</span></a></li>
 </ul></li>
 <li class="nav-group" data-group-name="ipad ipad a16 &amp; mini 7 ipad air m4 ipad pro m5 pencil &amp; keyboard chart"><div class="nav-group-header" data-nav-toggle="navgroup-ipad"><span class="nav-group-chevron">▶</span><span class="nav-group-title">iPad</span><span class="nav-count">4</span></div><ul class="nav-subgroup" id="navgroup-ipad">
 <li><a href="#ipad-a16-mini-7-5" class="nav-link" data-target="ipad-a16-mini-7-5" data-name="ipad a16 &amp; mini 7"><span class="nav-label">iPad A16 &amp; Mini 7</span><span class="nav-count">57</span></a></li>
@@ -484,11 +486,11 @@
 <li><a href="#ipad-pro-m5-3" class="nav-link" data-target="ipad-pro-m5-3" data-name="ipad pro m5"><span class="nav-label">iPad Pro M5</span><span class="nav-count">62</span></a></li>
 <li><a href="#pencil-keyboard-chart-23" class="nav-link" data-target="pencil-keyboard-chart-23" data-name="pencil &amp; keyboard chart"><span class="nav-label">Pencil &amp; Keyboard Chart</span><span class="nav-count">21</span></a></li>
 </ul></li>
-<li class="nav-group" data-group-name="apple watch apple watch bands apple watch se3 apple watch serie 11 apple watch ultra 3"><div class="nav-group-header" data-nav-toggle="navgroup-apple-watch"><span class="nav-group-chevron">▶</span><span class="nav-group-title">Apple Watch</span><span class="nav-count">4</span></div><ul class="nav-subgroup" id="navgroup-apple-watch">
-<li><a href="#apple-watch-bands-15" class="nav-link" data-target="apple-watch-bands-15" data-name="apple watch bands"><span class="nav-label">Apple Watch Bands</span><span class="nav-count">156</span></a></li>
+<li class="nav-group" data-group-name="apple watch apple watch se3 apple watch serie 11 apple watch ultra 3 apple watch bands"><div class="nav-group-header" data-nav-toggle="navgroup-apple-watch"><span class="nav-group-chevron">▶</span><span class="nav-group-title">Apple Watch</span><span class="nav-count">4</span></div><ul class="nav-subgroup" id="navgroup-apple-watch">
 <li><a href="#apple-watch-se3-12" class="nav-link" data-target="apple-watch-se3-12" data-name="apple watch se3"><span class="nav-label">Apple Watch SE3</span><span class="nav-count">16</span></a></li>
 <li><a href="#apple-watch-serie-11-13" class="nav-link" data-target="apple-watch-serie-11-13" data-name="apple watch serie 11"><span class="nav-label">Apple Watch Serie 11</span><span class="nav-count">53</span></a></li>
 <li><a href="#apple-watch-ultra-3-14" class="nav-link" data-target="apple-watch-ultra-3-14" data-name="apple watch ultra 3"><span class="nav-label">Apple Watch Ultra 3</span><span class="nav-count">18</span></a></li>
+<li><a href="#apple-watch-bands-15" class="nav-link" data-target="apple-watch-bands-15" data-name="apple watch bands"><span class="nav-label">Apple Watch Bands</span><span class="nav-count">156</span></a></li>
 </ul></li>
 <li class="nav-group" data-group-name="mac desktop laptop"><div class="nav-group-header" data-nav-toggle="navgroup-mac"><span class="nav-group-chevron">▶</span><span class="nav-group-title">Mac</span><span class="nav-count">2</span></div><ul class="nav-subgroup" id="navgroup-mac">
 <li><a href="#desktop-1" class="nav-link" data-target="desktop-1" data-name="desktop"><span class="nav-label">Desktop</span><span class="nav-count">31</span></a></li>
