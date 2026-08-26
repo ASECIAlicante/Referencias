@@ -63,6 +63,15 @@
     font-size:12px;
     color:var(--text-dim);
   }
+  .sidebar-pinned{
+    padding:10px 14px 0;
+    border-bottom:1px solid var(--border);
+    padding-bottom:10px;
+  }
+  .sidebar-pinned .nav-link{
+    background: var(--panel);
+    border:1px solid var(--border);
+  }
   .sidebar-search{
     padding:12px 14px;
     border-bottom:1px solid var(--border);
@@ -448,15 +457,19 @@
 <div class="app">
   <aside class="sidebar">
     <div class="sidebar-header">
-      <h1>Catálogo Apple</h1>
+      <h1>Catálogo de referencias Apple</h1>
       <p>Referencias P/N · ECI · EAN — 26 hojas</p>
+    </div>
+    <div class="sidebar-pinned">
+      <a href="#home" class="nav-link nav-home" data-target="home" data-name="inicio">
+        <span class="nav-label">Inicio</span>
+      </a>
     </div>
     <div class="sidebar-search">
       <input type="text" id="sheetSearch" placeholder="Buscar...">
     </div>
     <ul class="nav-list" id="navList">
-      <li><a href="#home" class="nav-link nav-home" data-target="home" data-name="inicio"><span class="nav-label">Inicio</span></a></li>
-<li class="nav-group" data-group-name="iphone iphone 17 pro &amp; 17 pro max iphone 17 &amp; air iphone 17e fundas iphone 17 iphone 16 &amp; 16 plus fundas iphone 16 iphone eol iphone 17 demo"><div class="nav-group-header" data-nav-toggle="navgroup-iphone"><span class="nav-group-chevron">▶</span><span class="nav-group-title">iPhone</span><span class="nav-count">8</span></div><ul class="nav-subgroup" id="navgroup-iphone">
+      <li class="nav-group" data-group-name="iphone iphone 17 pro &amp; 17 pro max iphone 17 &amp; air iphone 17e fundas iphone 17 iphone 16 &amp; 16 plus fundas iphone 16 iphone eol iphone 17 demo"><div class="nav-group-header" data-nav-toggle="navgroup-iphone"><span class="nav-group-chevron">▶</span><span class="nav-group-title">iPhone</span><span class="nav-count">8</span></div><ul class="nav-subgroup" id="navgroup-iphone">
 <li><a href="#iphone-17-pro-17-pro-max-6" class="nav-link" data-target="iphone-17-pro-17-pro-max-6" data-name="iphone 17 pro &amp; 17 pro max"><span class="nav-label">iPhone 17 Pro &amp; 17 Pro Max</span><span class="nav-count">26</span></a></li>
 <li><a href="#iphone-17-air-7" class="nav-link" data-target="iphone-17-air-7" data-name="iphone 17 &amp; air"><span class="nav-label">iPhone 17 &amp; Air</span><span class="nav-count">28</span></a></li>
 <li><a href="#iphone-17e-8" class="nav-link" data-target="iphone-17e-8" data-name="iphone 17e"><span class="nav-label">iPhone 17e</span><span class="nav-count">11</span></a></li>
@@ -498,7 +511,6 @@
     
       <section class="panel" id="home" data-panel-name="Inicio">
         <div class="panel-header home-header">
-          <h2>Catálogo de referencias Apple</h2>
           <p class="home-subtitle">Selecciona un menú desde la barra de navegación o usa el buscador para acceder a las referencias.</p>
           <div class="home-stats">
             <span><strong>26</strong> hojas</span>
@@ -525,8 +537,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="laptop-0">
@@ -1342,8 +1354,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="desktop-1">
@@ -1631,8 +1643,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="display-2">
@@ -1784,8 +1796,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="ipad-pro-m5-3">
@@ -2303,8 +2315,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="ipad-air-m4-4">
@@ -2906,8 +2918,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="ipad-a16-mini-7-5">
@@ -3382,8 +3394,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="iphone-17-pro-17-pro-max-6">
@@ -3619,8 +3631,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="iphone-17-air-7">
@@ -3868,8 +3880,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="iphone-17e-8">
@@ -3993,8 +4005,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="fundas-iphone-17-9">
@@ -4906,8 +4918,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="iphone-16-16-plus-10">
@@ -5091,8 +5103,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="fundas-iphone-16-11">
@@ -5652,8 +5664,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="apple-watch-se3-12">
@@ -5851,8 +5863,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="apple-watch-serie-11-13">
@@ -6316,8 +6328,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="apple-watch-ultra-3-14">
@@ -6461,8 +6473,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="apple-watch-bands-15">
@@ -7544,8 +7556,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="airpods-homepod-16">
@@ -7775,8 +7787,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="accesorios-apple-tv-17">
@@ -8372,8 +8384,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="laptop-eol-18">
@@ -9069,8 +9081,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="desktop-eol-19">
@@ -9216,8 +9228,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="ipad-eol-20">
@@ -11115,8 +11127,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="iphone-eol-21">
@@ -12384,8 +12396,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="apple-watch-eol-22">
@@ -13406,8 +13418,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="iphone-17-demo-24">
@@ -13533,8 +13545,8 @@
         
         <div class="panel-toolbar">
           <div class="panel-actions">
-            <button class="btn-expand" data-action="expand">Expandir todo</button>
-            <button class="btn-collapse" data-action="collapse">Colapsar todo</button>
+            <button class="btn-expand" data-action="expand">Mostrar todo</button>
+            <button class="btn-collapse" data-action="collapse">Ocultar todo</button>
           </div>
         </div>
         <div class="panel-content" data-panel-content="airpods-eol-25">
