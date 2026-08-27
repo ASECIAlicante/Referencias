@@ -20,6 +20,23 @@
     --radius: 12px;
     --mono: 'SF Mono', 'Menlo', 'Consolas', monospace;
   }
+  body.light-mode{
+    --bg: #f4f5f8;
+    --bg-alt: #ffffff;
+    --panel: #ffffff;
+    --panel-2: #f0f1f5;
+    --border: #dde1e8;
+    --text: #14161c;
+    --text-dim: #5b6072;
+    --accent: #3f6fd6;
+    --accent-2: #6a45d6;
+    --accessory-bg: #eaf7ee;
+    --accessory-border: #2f9350;
+  }
+  body.light-mode mark{
+    background:#ffe067;
+    color:#1a1a1a;
+  }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
@@ -50,14 +67,41 @@
     padding:20px 18px 14px;
     border-bottom:1px solid var(--border);
   }
+  .sidebar-header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin:0 0 4px;
+  }
   .sidebar-header h1{
     font-size:17px;
-    margin:0 0 4px;
+    margin:0;
     font-weight:700;
     background: linear-gradient(90deg, var(--accent), var(--accent-2));
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
+  }
+  .theme-toggle{
+    flex-shrink:0;
+    width:30px;
+    height:30px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    font-size:14px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: border-color .12s, background .12s;
+  }
+  .theme-toggle:hover{
+    border-color: var(--accent);
+    background: var(--panel-2);
   }
   .sidebar-header p{
     margin:0;
@@ -459,7 +503,10 @@
 <div class="app">
   <aside class="sidebar">
     <div class="sidebar-header">
-      <h1>Catálogo de referencias Apple</h1>
+      <div class="sidebar-header-top">
+        <h1>Catálogo de referencias Apple</h1>
+        <button id="themeToggle" class="theme-toggle" type="button" title="Cambiar apariencia" aria-label="Cambiar apariencia">🌙</button>
+      </div>
       <p>Referencias P/N · ECI · EAN — 26 hojas</p>
     </div>
     <div class="sidebar-pinned">
@@ -13610,6 +13657,24 @@
   var panels = document.querySelectorAll('.panel');
   var sheetSearch = document.getElementById('sheetSearch');
 
+  // --- Theme toggle (dark / light) with persistence ---
+  var themeToggle = document.getElementById('themeToggle');
+  function applyTheme(theme){
+    document.body.classList.toggle('light-mode', theme === 'light');
+    if(themeToggle){ themeToggle.textContent = theme === 'light' ? '☀️' : '🌙'; }
+  }
+  var savedTheme = null;
+  try{ savedTheme = localStorage.getItem('catalogTheme'); }catch(e){}
+  applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+  if(themeToggle){
+    themeToggle.addEventListener('click', function(){
+      var isLight = document.body.classList.contains('light-mode');
+      var next = isLight ? 'dark' : 'light';
+      applyTheme(next);
+      try{ localStorage.setItem('catalogTheme', next); }catch(e){}
+    });
+  }
+
   function activate(slug){
     navLinks.forEach(function(l){
       l.classList.toggle('active', l.dataset.target === slug);
@@ -13620,6 +13685,9 @@
     if(slug === 'home'){
       document.querySelectorAll('.nav-group').forEach(function(g){
         g.classList.remove('open');
+      });
+      document.querySelectorAll('.panel .card.open').forEach(function(c){
+        c.classList.remove('open');
       });
       if(sheetSearch && sheetSearch.value){
         sheetSearch.value = '';
