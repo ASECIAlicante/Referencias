@@ -466,6 +466,30 @@
   .home-header h2{
     font-size:26px;
   }
+  .home-today{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    gap:8px;
+    margin:0 0 6px;
+  }
+  .home-today-date{
+    font-size:13px;
+    font-weight:700;
+    color: var(--accent);
+    text-transform:capitalize;
+  }
+  .home-today-fact{
+    font-size:13.5px;
+    color: var(--text-dim);
+    line-height:1.5;
+  }
+  .home-today-fact:before{
+    content:"· ";
+  }
+  .home-today-fact:empty:before{
+    content:"";
+  }
   .home-subtitle{
     color: var(--text-dim);
     font-size:14.5px;
@@ -555,6 +579,10 @@
     
       <section class="panel" id="home" data-panel-name="Inicio">
         <div class="panel-header home-header">
+          <div class="home-today" id="homeToday">
+            <span class="home-today-date" id="homeTodayDate"></span>
+            <span class="home-today-fact" id="homeTodayFact"></span>
+          </div>
           <p class="home-subtitle">Selecciona una categoría en el menú superior o usa el buscador para acceder a las referencias.</p>
           <div class="home-stats">
             <span><strong>29</strong> hojas</span>
@@ -13288,6 +13316,78 @@
   var lobRows = document.querySelectorAll('.btn-row.level2');
   var leafButtons = document.querySelectorAll('.nav-btn-leaf');
   var homeBtn = document.querySelector('.nav-btn-home');
+
+  // --- Home: today's date + "on this day in Apple history" curious fact(s) ---
+  // Each date key ('MM-DD') maps to an array of { y: year, t: event text } —
+  // some days in Apple's history have more than one notable milestone.
+  var APPLE_ON_THIS_DAY = {
+    '01-03': [{ y: 1977, t: 'Apple se constituye legalmente como "Apple Computer Company"' }],
+    '01-09': [
+      { y: 2001, t: 'se presenta iTunes 1.0 en el Macworld de San Francisco' },
+      { y: 2007, t: 'Steve Jobs presenta el primer iPhone en el Macworld de San Francisco' }
+    ],
+    '01-19': [{ y: 1983, t: 'se anuncia el Apple Lisa, el primer ordenador personal con interfaz gráfica de Apple' }],
+    '01-24': [{ y: 1984, t: 'se presenta el primer Macintosh, con el mítico anuncio "1984"' }],
+    '01-27': [{ y: 2010, t: 'Steve Jobs presenta el primer iPad' }],
+    '02-24': [{ y: 1955, t: 'nace Steve Jobs en San Francisco' }],
+    '03-21': [{ y: 2016, t: 'se presenta el iPhone SE de 1ª generación en el evento "Let Us Loop You In"' }],
+    '03-24': [{ y: 2001, t: 'se lanza Mac OS X 10.0 "Cheetah", la primera versión pública de Mac OS X' }],
+    '04-01': [{ y: 1976, t: 'Steve Jobs, Steve Wozniak y Ronald Wayne fundan Apple' }],
+    '04-03': [{ y: 2010, t: 'sale a la venta el primer iPad' }],
+    '04-24': [{ y: 2015, t: 'el Apple Watch original llega a las tiendas' }],
+    '04-28': [{ y: 2003, t: 'abre sus puertas la iTunes Music Store' }],
+    '05-06': [{ y: 1998, t: 'se anuncia el iMac original, con su icónico diseño translúcido' }],
+    '05-19': [{ y: 2001, t: 'abren las dos primeras Apple Store, en Tysons Corner y Glendale' }],
+    '06-02': [{ y: 2014, t: 'Apple presenta el lenguaje de programación Swift en la WWDC' }],
+    '06-06': [{ y: 2011, t: 'Apple anuncia iCloud en la WWDC' }],
+    '06-10': [{ y: 1977, t: 'sale a la venta el Apple II' }],
+    '06-29': [{ y: 2007, t: 'sale a la venta el primer iPhone' }],
+    '06-30': [{ y: 2015, t: 'se lanza Apple Music en todo el mundo' }],
+    '07-10': [{ y: 2008, t: 'se lanza la App Store con 500 aplicaciones disponibles' }],
+    '08-06': [{ y: 1997, t: 'Steve Jobs anuncia la inversión de 150 millones de dólares de Microsoft en el Macworld de Boston' }],
+    '08-02': [{ y: 2018, t: 'Apple se convierte en la primera empresa cotizada en superar el billón de dólares de valor en bolsa' }],
+    '08-15': [{ y: 1998, t: 'sale a la venta el iMac original' }],
+    '08-24': [{ y: 2011, t: 'Steve Jobs renuncia como CEO de Apple y Tim Cook toma el relevo' }],
+    '09-07': [{ y: 2016, t: 'se presenta el iPhone 7, que elimina el conector de auriculares, y se anuncian los primeros AirPods' }],
+    '09-09': [{ y: 2014, t: 'Apple presenta el primer Apple Watch y Apple Pay' }],
+    '09-10': [{ y: 2013, t: 'se presenta el iPhone 5s, con el primer sensor Touch ID' }],
+    '09-12': [{ y: 2017, t: 'se presenta el iPhone X, con reconocimiento facial Face ID' }],
+    '09-17': [{ y: 1985, t: 'Steve Jobs dimite de Apple tras perder una disputa interna de poder' }],
+    '09-19': [{ y: 2013, t: 'se lanza iOS 7, el mayor rediseño visual de la historia de iOS' }],
+    '10-04': [{ y: 2011, t: 'se presenta el iPhone 4S junto con Siri' }],
+    '10-05': [{ y: 2011, t: 'fallece Steve Jobs a los 56 años' }],
+    '10-16': [{ y: 2003, t: 'se lanza iTunes para Windows' }],
+    '10-23': [
+      { y: 2001, t: 'se anuncia el primer iPod' },
+      { y: 2012, t: 'se presenta el primer iPad mini' }
+    ],
+    '11-10': [
+      { y: 1997, t: 'abre la tienda online Apple Store' },
+      { y: 2020, t: 'Apple presenta los primeros Mac con chip M1, su primer procesador propio para Mac' }
+    ],
+    '12-12': [{ y: 1980, t: 'Apple sale a bolsa en el NASDAQ' }]
+  };
+  var homeTodayDate = document.getElementById('homeTodayDate');
+  var homeTodayFact = document.getElementById('homeTodayFact');
+  if(homeTodayDate){
+    var today = new Date();
+    var dateLabel = today.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    homeTodayDate.textContent = dateLabel.charAt(0).toUpperCase() + dateLabel.slice(1);
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var dd = String(today.getDate()).padStart(2, '0');
+    var events = APPLE_ON_THIS_DAY[mm + '-' + dd];
+    if(homeTodayFact){
+      if(events && events.length){
+        var sentences = events.map(function(ev, i){
+          var lead = i === 0 ? 'Tal día como hoy' : 'Además, ese mismo día';
+          return lead + ' en ' + ev.y + ', ' + ev.t + '.';
+        });
+        homeTodayFact.textContent = sentences.join(' ');
+      } else {
+        homeTodayFact.textContent = '';
+      }
+    }
+  }
 
   // --- Theme toggle (dark / light) with persistence ---
   var themeToggle = document.getElementById('themeToggle');
