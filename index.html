@@ -14450,18 +14450,23 @@
 
   // Global search
   function escapeRegExp(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-  function highlightText(text, term){
-    if(!term){ return text; }
-    var re = new RegExp('(' + escapeRegExp(term) + ')', 'ig');
+  function highlightText(text, tokens){
+    if(!tokens || !tokens.length){ return text; }
+    var sorted = tokens.slice().sort(function(a, b){ return b.length - a.length; });
+    var pattern = sorted.map(escapeRegExp).join('|');
+    if(!pattern){ return text; }
+    var re = new RegExp('(' + pattern + ')', 'ig');
     return String(text).replace(re, '<mark>$1</mark>');
   }
 
   var resultsBody = document.getElementById('searchResultsBody');
   var resultsCount = document.getElementById('searchResultsCount');
 
-  function renderResults(term){
+  function renderResults(term, tokens){
     resultsBody.innerHTML = '';
-    var matches = ALL_ROWS.filter(function(r){ return r.search.indexOf(term) !== -1; });
+    var matches = ALL_ROWS.filter(function(r){
+      return tokens.every(function(t){ return r.search.indexOf(t) !== -1; });
+    });
     resultsCount.textContent = matches.length + ' referencia' + (matches.length === 1 ? '' : 's') + ' encontrada' + (matches.length === 1 ? '' : 's') + ' para "' + term + '"';
 
     var existingEmpty = document.querySelector('#search-results .no-results');
@@ -14484,10 +14489,10 @@
       var link = document.createElement('a');
       link.href = '#' + r.slug;
       link.className = 'result-sheet-link';
-      link.innerHTML = highlightText(r.sheet, term);
+      link.innerHTML = highlightText(r.sheet, tokens);
       var secSpan = document.createElement('div');
       secSpan.className = 'result-section-name';
-      secSpan.innerHTML = (r.isAccessory ? '🔌 ' : '') + highlightText(r.section, term);
+      secSpan.innerHTML = (r.isAccessory ? '🔌 ' : '') + highlightText(r.section, tokens);
       link.addEventListener('click', function(e){
         e.preventDefault();
         activate(r.slug);
@@ -14511,7 +14516,7 @@
         labelSpan.textContent = c.label;
         var valueSpan = document.createElement('span');
         valueSpan.className = 'result-cell-value';
-        valueSpan.innerHTML = c.v ? highlightText(c.v, term) : '';
+        valueSpan.innerHTML = c.v ? highlightText(c.v, tokens) : '';
         wrap.appendChild(labelSpan);
         wrap.appendChild(valueSpan);
         td.appendChild(wrap);
@@ -14523,16 +14528,18 @@
   }
 
   sheetSearch.addEventListener('input', function(){
-    var term = sheetSearch.value.trim().toLowerCase();
+    var raw = sheetSearch.value.trim();
+    var term = raw.toLowerCase();
+    var tokens = term.split(/\s+/).filter(Boolean);
     var existingEmpty = document.querySelector('#search-results .no-results');
     if(existingEmpty){ existingEmpty.remove(); }
-    if(!term){
+    if(!tokens.length){
       if(document.getElementById('search-results').classList.contains('active')){
         activate('home');
       }
       return;
     }
-    renderResults(term);
+    renderResults(raw, tokens);
     activate('search-results');
   });
 
